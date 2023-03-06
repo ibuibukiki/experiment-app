@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'screen/main_screen.dart';
 
@@ -22,12 +21,8 @@ class MyApp extends HookConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ValueNotifier<List<int>> selectedList = useState([]);
-    final selectedCount = useState(0);
-    final isMoving = useState(false);
-
     return MaterialApp(
-      title: '俺のアプリ メモ',
+      title: 'experiment app',
       theme: ThemeData(
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Color(0xffaec6f5),
@@ -36,7 +31,7 @@ class MyApp extends HookConsumerWidget {
         ),
         fontFamily: 'Noto Sans JP',
       ),
-      home: MainScreen(),
+      home: const MainScreen(),
     );
   }
 }
