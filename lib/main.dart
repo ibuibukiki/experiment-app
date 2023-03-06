@@ -24,11 +24,6 @@ class MyApp extends HookConsumerWidget {
     return MaterialApp(
       title: 'experiment app',
       theme: ThemeData(
-        textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: Color(0xffaec6f5),
-          selectionColor: Color(0xffaec6f5),
-          selectionHandleColor: Color(0xffaec6f5),
-        ),
         fontFamily: 'Noto Sans JP',
       ),
       home: const MainScreen(),
