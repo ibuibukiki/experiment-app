@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sensors_plus/sensors_plus.dart';
+import 'package:motion_sensors/motion_sensors.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class MainScreen extends HookConsumerWidget {
@@ -24,24 +24,28 @@ class MainScreen extends HookConsumerWidget {
     final _magnet = useState("");
 
     useEffect(() {
-      accelerometerEvents.listen(
+      motionSensors.setSensorUpdateInterval(
+        1,
+        Duration.microsecondsPerSecond * 10, //test用
+      );
+      motionSensors.accelerometer.listen(
         (AccelerometerEvent event) {
           _accelX.value = event.x;
           _accelY.value = event.y;
           _accelZ.value = event.z;
         },
       );
-      userAccelerometerEvents.listen(
+      motionSensors.userAccelerometer.listen(
         (UserAccelerometerEvent event) {
           _localAccel.value = "local accel\n${event.x}\n${event.y}\n${event.z}";
         },
       );
-      gyroscopeEvents.listen(
+      motionSensors.gyroscope.listen(
         (GyroscopeEvent event) {
           _gyro.value = "gyro\n${event.x}\n${event.y}\n${event.z}";
         },
       );
-      magnetometerEvents.listen((MagnetometerEvent event) {
+      motionSensors.magnetometer.listen((MagnetometerEvent event) {
         _magnet.value = "magnet\n${event.x}\n${event.y}\n${event.z}";
       });
       return null;
